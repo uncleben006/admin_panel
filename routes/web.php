@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// TODO: Redirect to admin
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect(backpack_url('dashboard'));
 });
