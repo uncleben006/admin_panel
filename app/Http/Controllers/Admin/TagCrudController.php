@@ -6,6 +6,8 @@ use App\Http\Requests\TagRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
+// TODO: 調查如何設定權限
+
 /**
  * Class TagCrudController
  * @package App\Http\Controllers\Admin
@@ -31,7 +33,7 @@ class TagCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Tag::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/tag');
-        CRUD::setEntityNameStrings('tag', 'tags');
+        CRUD::setEntityNameStrings('tag', '標籤');
     }
 
     /**
@@ -43,10 +45,26 @@ class TagCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('id');
-        CRUD::column('name');
-        CRUD::column('slug');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        $this->crud->addColumn([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => '標籤名稱',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'slug',
+            'type' => 'text',
+            'label' => '標籤(slug)',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'type' => 'datetime',
+            'label' => '建立時間',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'updated_at',
+            'type' => 'datetime',
+            'label' => '更新時間',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -64,12 +82,17 @@ class TagCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(TagRequest::class);
+        CRUD::addField([
+            'name' => 'name',
+            'type' => 'text',
+            'label' => '標籤名稱'
+        ]);
+        CRUD::addField([
+            'name' => 'slug',
+            'type' => 'text',
+            'label' => '標籤(slug)'
+        ]);
 
-        CRUD::field('id');
-        CRUD::field('name');
-        CRUD::field('slug');
-        CRUD::field('created_at');
-        CRUD::field('updated_at');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -87,5 +110,10 @@ class TagCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
     }
 }
