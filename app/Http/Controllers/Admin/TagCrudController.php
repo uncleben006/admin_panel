@@ -44,23 +44,23 @@ class TagCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
-        $this->crud->addColumn([
+        CRUD::addColumn('id');
+        CRUD::addColumn([
             'name' => 'name',
             'type' => 'text',
             'label' => '標籤名稱',
         ]);
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'slug',
             'type' => 'text',
             'label' => '標籤(slug)',
         ]);
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'created_at',
             'type' => 'datetime',
             'label' => '建立時間',
         ]);
-        $this->crud->addColumn([
+        CRUD::addColumn([
             'name' => 'updated_at',
             'type' => 'datetime',
             'label' => '更新時間',
