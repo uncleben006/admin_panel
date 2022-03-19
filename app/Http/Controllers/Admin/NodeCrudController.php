@@ -44,6 +44,7 @@ class NodeCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('id');
+        // TODO: datatable can't search for relationship column.
         CRUD::addColumn([
             'name'   => 'group',
             'type'   => 'relationship',

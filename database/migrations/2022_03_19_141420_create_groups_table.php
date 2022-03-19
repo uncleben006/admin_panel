@@ -15,7 +15,6 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('group');
-            $table->integer('user_id');
             $table->tinyInteger('status');
             $table->timestamps();
         });

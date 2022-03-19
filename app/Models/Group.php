@@ -19,7 +19,7 @@ class Group extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['group','user_id','status'];
+    protected $fillable = ['group','status'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,12 +34,6 @@ class Group extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    // Each group data belongs to one user data
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
 
     /*
     |--------------------------------------------------------------------------

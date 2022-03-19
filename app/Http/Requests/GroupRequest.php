@@ -26,7 +26,6 @@ class GroupRequest extends FormRequest
     {
         return [
             'group' => 'required',
-            'user_id'  => 'required',
             'status'  => 'required|boolean'
         ];
     }

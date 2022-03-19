@@ -48,14 +48,6 @@ class GroupCrudController extends CrudController
             'type' => 'text',
             'label' => '群組'
         ]);
-        // TODO: datatable can't search for relationship column.
-        CRUD::addColumn([
-            'name'   => 'user',
-            'type'   => 'relationship',
-            'label'  => '帳號',
-            'entity' => 'user',
-            'attribute' => 'email'
-        ]);
         CRUD::addColumn([
             'name' => 'status',
             'type' => 'boolean',
@@ -101,21 +93,6 @@ class GroupCrudController extends CrudController
             'name' => 'group',
             'type' => 'text',
             'label' => '群組'
-        ]);
-        CRUD::addField([
-            'type' => 'select',
-            'label' => '帳號',
-            'name' => 'user_id',    // the db column for the foreign key
-
-            // optional - manually specify the related model and attribute
-            // 'model'     => "App\Models\User", // related model
-            'entity'    => 'user',  // 'entity' should point to the method that defines the relationship in your Model
-            'attribute' => 'email', // foreign key attribute that is shown to user
-
-            // optional - force the related options to be a custom query, instead of all();
-            'options'   => (function ($query) {
-                return $query->orderBy('email', 'ASC')->get();
-            }), //  you can use this to filter the results show in the select
         ]);
         CRUD::addField([
             'name' => 'status',
