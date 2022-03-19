@@ -14,13 +14,14 @@ class CreateNodesTable extends Migration
     {
         Schema::create('nodes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('group');
+            $table->integer('group_id');
             $table->string('country');
             $table->string('region');
             $table->ipAddress('ip');
             $table->string('hostname');
             $table->tinyInteger('connection');
             $table->tinyInteger('monitor');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
