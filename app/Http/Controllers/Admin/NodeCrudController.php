@@ -32,7 +32,7 @@ class NodeCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Node::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/node');
-        CRUD::setEntityNameStrings('node', '節點管理');
+        CRUD::setEntityNameStrings('節點', '節點管理');
     }
 
     /**

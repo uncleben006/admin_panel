@@ -33,7 +33,7 @@ class TagCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Tag::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/tag');
-        CRUD::setEntityNameStrings('tag', '標籤');
+        CRUD::setEntityNameStrings('標籤', '標籤管理');
     }
 
     /**
