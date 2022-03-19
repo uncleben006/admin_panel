@@ -77,12 +77,45 @@ class NodeCrudController extends CrudController
         CRUD::addColumn([
             'name' => 'connection',
             'type' => 'boolean',
-            'label' => '連線狀況'
+            'label' => '連線狀況',
+            'options' => [0 => '異常', 1 => '正常'], // optional
+            'wrapper' => [
+                // 'element' => 'span',
+                'class' => function ($crud, $column, $entry, $related_key) {
+                    if ($column['value'] == 1) {
+                        return 'text-success';
+                    }
+                    return 'text-danger';
+                },
+            ],
         ]);
         CRUD::addColumn([
             'name' => 'monitor',
             'type' => 'boolean',
-            'label' => '監控'
+            'label' => '監控',
+            'options' => [0 => '無監控', 1 => '監控中'], // optional
+            'wrapper' => [
+                'class' => function ($crud, $column, $entry, $related_key) {
+                    if ($column['value'] == 1) {
+                        return 'text-success';
+                    }
+                    return 'text-danger';
+                },
+            ],
+        ]);
+        CRUD::addColumn([
+            'name' => 'status',
+            'type' => 'boolean',
+            'label' => '狀態',
+            'options' => [0 => '停用', 1 => '啟用'], // optional
+            'wrapper' => [
+                'class' => function ($crud, $column, $entry, $related_key) {
+                    if ($column['value'] == 1) {
+                        return 'text-success';
+                    }
+                    return 'text-danger';
+                },
+            ],
         ]);
         CRUD::addColumn([
             'name' => 'created_at',
@@ -144,13 +177,18 @@ class NodeCrudController extends CrudController
         ]);
         CRUD::addField([
             'name' => 'connection',
-            'type' => 'boolean',
-            'label' => '連線狀況'
+            'type' => 'checkbox',
+            'label' => '連線狀況(手動調整)'
         ]);
         CRUD::addField([
             'name' => 'monitor',
-            'type' => 'boolean',
-            'label' => '監控'
+            'type' => 'checkbox',
+            'label' => '監控(勾選啟用監控)'
+        ]);
+        CRUD::addField([
+            'name' => 'status',
+            'type' => 'checkbox',
+            'label' => '狀態(勾選啟用機器)',
         ]);
 
         /**

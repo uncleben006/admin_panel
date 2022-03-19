@@ -19,7 +19,7 @@ class Node extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-     protected $fillable = ['group','country','region','ip','hostname','connection','monitor'];
+     protected $fillable = ['group','country','region','ip','hostname','connection','monitor','status'];
     // protected $hidden = [];
     // protected $dates = [];
 

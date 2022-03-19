@@ -31,7 +31,8 @@ class NodeRequest extends FormRequest
             'ip'  => 'required|ipv4',
             'hostname'  => 'required',
             'connection'  => 'required|boolean',
-            'monitor'  => 'required|boolean'
+            'monitor'  => 'required|boolean',
+            'status'  => 'required|boolean'
         ];
     }
 
