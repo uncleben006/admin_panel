@@ -45,9 +45,11 @@ class NodeCrudController extends CrudController
     {
         CRUD::column('id');
         CRUD::addColumn([
-            'name' => 'group',
-            'type' => 'text',
-            'label' => '群組'
+            'name'   => 'group',
+            'type'   => 'relationship',
+            'label'  => '群組',
+            'entity' => 'group',
+            'attribute' => 'group'
         ]);
         CRUD::addColumn([
             'name' => 'country',
@@ -146,9 +148,19 @@ class NodeCrudController extends CrudController
         CRUD::setValidation(NodeRequest::class);
 
         CRUD::addField([
-            'name' => 'group',
-            'type' => 'text',
-            'label' => '群組'
+            'type' => 'select',
+            'label' => '群組',
+            'name' => 'group_id',   // the db column for the foreign key
+
+            // optional - manually specify the related model and attribute
+            // 'model'     => "App\Models\User", // related model
+            'entity'    => 'group',  // 'entity' should point to the method that defines the relationship in your Model
+            'attribute' => 'group', // foreign key attribute that is shown to user
+
+            // optional - force the related options to be a custom query, instead of all();
+            'options'   => (function ($query) {
+                return $query->orderBy('group', 'ASC')->get();
+            }), //  you can use this to filter the results show in the select
         ]);
         CRUD::addField([
             'name' => 'country',
@@ -207,5 +219,10 @@ class NodeCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
     }
 }

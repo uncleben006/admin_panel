@@ -25,7 +25,7 @@ class NodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'group' => 'required',
+            'group_id' => 'required',
             'country'  => 'required',
             'region'  => 'required',
             'ip'  => 'required|ipv4',
