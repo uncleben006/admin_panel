@@ -18,4 +18,5 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('tag', 'TagCrudController');
     Route::crud('node', 'NodeCrudController');
+    Route::crud('group', 'GroupCrudController');
 }); // this should be the absolute last line of this file
