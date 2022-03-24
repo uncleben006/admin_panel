@@ -20,6 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'group_id',
         'name',
         'email',
         'password',
@@ -43,4 +44,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Each user data belongs to one group data
+    public function group()
+    {
+        return $this->belongsTo('App\Models\Group');
+    }
 }
