@@ -1,4 +1,4 @@
-@if ($crud->hasAccess('update'))
+@if ($crud->hasAccess('update') && backpack_user()->can('update'))
 	@if (!$crud->model->translationEnabled())
 
 	<!-- Single edit button -->
