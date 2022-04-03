@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Log;
 
 class CheckIfAdmin
 {
@@ -27,8 +28,11 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        // return ($user->is_admin == 1);
-        return true;
+        // return true if the user role is admin
+        // Log::info($user->roles);
+        if (! $user->roles) { return false; }
+        elseif (! $user->roles->first()) { return false; }
+        else { return ($user->roles->first()->name == 'admin'); }
     }
 
     /**
@@ -42,7 +46,7 @@ class CheckIfAdmin
         if ($request->ajax() || $request->wantsJson()) {
             return response(trans('backpack::base.unauthorized'), 401);
         } else {
-            return redirect()->guest(backpack_url('login'));
+            return redirect()->guest(backpack_url('logout'));
         }
     }
 
