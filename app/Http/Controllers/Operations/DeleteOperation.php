@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Operations;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 trait DeleteOperation
@@ -53,8 +52,8 @@ trait DeleteOperation
         $id = $this->crud->getCurrentEntryId() ?? $id;
 
         // soft delete
-        Log::info($this->crud->update( $id, [ "status" => 9 ] ));
-        return $this->crud->update( $id, [ "status" => 9 ] );
+        $this->crud->update( $id, [ "status" => 9 ] );
+        return true;
         // return $this->crud->delete($id);
     }
 }

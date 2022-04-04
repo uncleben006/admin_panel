@@ -10,7 +10,7 @@ use Backpack\PermissionManager\app\Http\Requests\RoleUpdateCrudRequest as Update
 
 class RoleCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \App\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \App\Http\Controllers\Operations\DeleteOperation;
